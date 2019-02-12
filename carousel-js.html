@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TESTES</title>
+	<style type="text/css">
+		#block {
+			display: table;
+			width: 300px;
+			height: 250px;
+			background-color: #000;
+			margin: 0px auto;
+		}
+		.btn{
+			position: absolute;
+			display: block;
+			float: left;
+			clear: both;
+			margin: 250px 100px;
+			background-color: #ccc;
+		}
+		.btn button{
+			border:none;
+			height: 30px;
+		}
+		.btn button:hover{
+			background-color: #fff;
+			color: #000;
+		}
+		#next { float: right; margin: 250px 253px; }
+		#prev { float:left; margin: 250px 0px; }
+		h3{ color: #fff; text-align: center; }
+
+		#cont_next, #cont_prev { display: none; }
+		.rows{
+			display: block;
+			width: 100px;
+			margin: 0px auto;
+		}
+	</style>
+	<script type="text/javascript">
+
+		//document.getElementById("button1").setAttribute("id", "0");
+		
+		function next(){
+			var cont1 = document.getElementsByClassName("rows").length;
+			var rows = document.getElementsByClassName("rows");
+			var get_next = document.getElementById("cont_next").innerHTML;
+				
+			if(get_next == ""){
+				var ad = '0';
+				document.getElementById("cont_next").innerHTML = ad;
+				document.getElementById("resultado").innerHTML = rows[ad].innerHTML;
+			}else{
+				for(i =0; i < 1; i++){
+					if(get_next >= 0 && get_next < cont1 - 1){
+						var cont2 = get_next;
+						var added1 = "1";
+						var new_valor = parseFloat(cont2) + parseFloat(added1);
+						document.getElementById("cont_next").innerHTML = new_valor;
+						document.getElementById("resultado").innerHTML = rows[new_valor].innerHTML;
+
+						document.getElementById("cont_prev").innerHTML = parseFloat(new_valor) - parseFloat(1);
+					}
+				}
+			}
+		}
+
+		function prev(){
+
+			var get_prev = document.getElementById("cont_prev").innerHTML;
+			if(get_prev == ""){
+				document.getElementById("cont_prev").innerHTML = "3";
+			}else if(get_prev >= 1){
+
+				var att_next = document.getElementById("cont_next").innerHTML;
+				var added = "1";
+				var new_valor_prev = parseFloat(att_next) - parseFloat(added);
+				document.getElementById("cont_prev").innerHTML = new_valor_prev;
+				for(i = 0; i <= 1; i++){
+					var new_next = new_valor_prev;
+					document.getElementById("cont_next").innerHTML = new_next;
+				}
+				document.getElementById("resultado").innerHTML = document.getElementsByClassName("rows")[new_valor_prev].innerHTML;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="block">
+		<div class="btn" id="prev">
+			<button id="button1" onclick="prev()">PREV</button>
+		</div>
+		<div class="btn" id="next" rel="">
+			<button id="button2" onclick="next()">NEXT</button>
+		</div>	
+		<h3 id="resultado"></h3>
+		<a href="#" id="cont_next"></a>
+		<a href="#" id="cont_prev"></a>
+	</div>
+	<div id="block1">
+		<div class="rows">
+			ROWS 1
+		</div>
+		<div class="rows">
+			ROWS 2
+		</div>
+		<div class="rows">
+			ROWS 3
+		</div>
+		<div class="rows">
+			ROWS 4
+		</div>
+	</div>
+</body>
+</html>
